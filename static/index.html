@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Software Engineering Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Panel -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">
+                    <i class="fa-solid fa-brain-circuit"></i>
+                </div>
+                <h2>AISE Assistant</h2>
+            </div>
+            
+            <div class="repo-box card">
+                <h3>Index Repository</h3>
+                <p class="section-desc">Paste a public GitHub link or local path to index and analyze the codebase.</p>
+                <div class="input-group">
+                    <i class="fa-brands fa-github input-icon"></i>
+                    <input type="text" id="repo-url" placeholder="https://github.com/pallets/click">
+                </div>
+                <button id="index-btn" class="glow-button">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Analyze Codebase</span>
+                </button>
+                <button id="clear-btn" class="glow-button secondary" style="margin-top: 10px; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); box-shadow: none; color: #EF4444; width: 100%;">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>Clear Database</span>
+                </button>
+                <div id="index-progress" class="progress-container hidden">
+                    <div class="spinner"></div>
+                    <span id="progress-text">Cloning repository...</span>
+                </div>
+            </div>
+
+            <div class="stats-box card">
+                <h3>Codebase Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-cubes"></i> Modules</span>
+                        <span class="stat-val" id="stat-modules">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-shapes"></i> Classes</span>
+                        <span class="stat-val" id="stat-classes">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-code"></i> Functions</span>
+                        <span class="stat-val" id="stat-functions">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-gears"></i> Methods</span>
+                        <span class="stat-val" id="stat-methods">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-file-import"></i> Imports</span>
+                        <span class="stat-val" id="stat-imports">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label"><i class="fa-solid fa-circle-nodes"></i> Graph Nodes</span>
+                        <span class="stat-val" id="stat-nodes">-</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <div class="active-repo-info">
+                    <span class="pulse-indicator"></span>
+                    <span id="active-repo-name">No codebase indexed yet</span>
+                </div>
+            </header>
+
+            <div class="messages-container" id="messages-container">
+                <!-- Welcome Message -->
+                <div class="message system-message">
+                    <div class="message-bubble">
+                        <i class="fa-solid fa-circle-info system-icon"></i>
+                        <p>Welcome! Paste a repository link in the sidebar to begin analyzing. Once indexed, you can ask about its architecture, functions, complexity, or request summary reports.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggested Actions -->
+            <div class="suggestions-container" id="suggestions-box">
+                <button class="suggestion-tag" data-query="Show statistics of the repository">
+                    <i class="fa-solid fa-chart-simple"></i> Show statistics
+                </button>
+                <button class="suggestion-tag" data-query="Explain the architecture of the codebase">
+                    <i class="fa-solid fa-sitemap"></i> Explain architecture
+                </button>
+                <button class="suggestion-tag" data-query="Are there any dead code or unused functions?">
+                    <i class="fa-solid fa-skull"></i> Find dead code
+                </button>
+            </div>
+
+            <!-- Chat Input Footer -->
+            <footer class="chat-footer">
+                <div class="chat-input-wrapper">
+                    <textarea id="chat-input" placeholder="Ask a question about the indexed codebase..." rows="1"></textarea>
+                    <button id="send-btn" class="send-button" disabled>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>
